@@ -639,44 +639,68 @@
 
         <div class="lp-proof-grid reveal">
           <figure class="lp-proof-item">
-            <img
-              src="assets/images/photos/proof-01.webp"
-              alt="Bằng chứng kết quả Affiliate 1"
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="800"
-            />
+            <button
+              type="button"
+              class="lp-proof-zoom"
+              aria-label="Phóng to bằng chứng 1"
+            >
+              <img
+                src="assets/images/photos/proof-01.webp"
+                alt="Bằng chứng kết quả Affiliate 1"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="800"
+              />
+            </button>
           </figure>
           <figure class="lp-proof-item">
-            <img
-              src="assets/images/photos/proof-02.webp"
-              alt="Bằng chứng kết quả Affiliate 2"
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="800"
-            />
+            <button
+              type="button"
+              class="lp-proof-zoom"
+              aria-label="Phóng to bằng chứng 2"
+            >
+              <img
+                src="assets/images/photos/proof-02.webp"
+                alt="Bằng chứng kết quả Affiliate 2"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="800"
+              />
+            </button>
           </figure>
           <figure class="lp-proof-item">
-            <img
-              src="assets/images/photos/proof-03.webp"
-              alt="Bằng chứng kết quả Affiliate 3"
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="800"
-            />
+            <button
+              type="button"
+              class="lp-proof-zoom"
+              aria-label="Phóng to bằng chứng 3"
+            >
+              <img
+                src="assets/images/photos/proof-03.webp"
+                alt="Bằng chứng kết quả Affiliate 3"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="800"
+              />
+            </button>
           </figure>
           <figure class="lp-proof-item">
-            <img
-              src="assets/images/photos/proof-04.webp"
-              alt="Bằng chứng kết quả Affiliate 4"
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="800"
-            />
+            <button
+              type="button"
+              class="lp-proof-zoom"
+              aria-label="Phóng to bằng chứng 4"
+            >
+              <img
+                src="assets/images/photos/proof-04.webp"
+                alt="Bằng chứng kết quả Affiliate 4"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="800"
+              />
+            </button>
           </figure>
         </div>
 
@@ -1577,6 +1601,45 @@
         </div>
       </div>
     </footer>
+
+    <!-- Proof image lightbox -->
+    <div
+      class="lp-lightbox"
+      id="lp-lightbox"
+      hidden
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Xem ảnh lớn"
+    >
+      <div class="lp-lightbox-backdrop" data-lightbox-close></div>
+      <button
+        type="button"
+        class="lp-lightbox-close"
+        data-lightbox-close
+        aria-label="Đóng"
+      >
+        ×
+      </button>
+      <button
+        type="button"
+        class="lp-lightbox-nav lp-lightbox-prev"
+        aria-label="Ảnh trước"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        class="lp-lightbox-nav lp-lightbox-next"
+        aria-label="Ảnh sau"
+      >
+        ›
+      </button>
+      <figure class="lp-lightbox-figure">
+        <img class="lp-lightbox-img" alt="" />
+        <figcaption class="lp-lightbox-cap"></figcaption>
+      </figure>
+    </div>
 
     <!-- Register modal -->
     <div

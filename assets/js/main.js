@@ -162,6 +162,7 @@
   const modal = document.getElementById("modal-register");
   const openModal = () => {
     if (!modal) return;
+    closeLightbox();
     closeHeaderMenu();
     modal.hidden = false;
     modal.setAttribute("aria-hidden", "false");
@@ -187,10 +188,88 @@
     modal.querySelectorAll("[data-close-modal]").forEach((el) => {
       el.addEventListener("click", closeModal);
     });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !modal.hidden) closeModal();
-    });
   }
+
+  /* Proof image lightbox */
+  const lightbox = document.getElementById("lp-lightbox");
+  const lightboxImg = lightbox?.querySelector(".lp-lightbox-img");
+  const lightboxCap = lightbox?.querySelector(".lp-lightbox-cap");
+  const proofZooms = Array.from(document.querySelectorAll(".lp-proof-zoom"));
+  let lightboxIndex = 0;
+
+  const showLightboxImage = (index) => {
+    if (!lightbox || !lightboxImg || !proofZooms.length) return;
+    lightboxIndex = (index + proofZooms.length) % proofZooms.length;
+    const img = proofZooms[lightboxIndex].querySelector("img");
+    if (!img) return;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || "";
+    if (lightboxCap) {
+      lightboxCap.textContent = img.alt || "";
+    }
+  };
+
+  const openLightbox = (index) => {
+    if (!lightbox) return;
+    closeModal();
+    closeHeaderMenu();
+    showLightboxImage(index);
+    lightbox.hidden = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lp-modal-open");
+    lightbox
+      .querySelector(".lp-lightbox-close")
+      ?.focus({ preventScroll: true });
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || lightbox.hidden) return;
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    if (lightboxImg) lightboxImg.removeAttribute("src");
+    if (!modal || modal.hidden) {
+      document.body.classList.remove("lp-modal-open");
+    }
+  };
+
+  proofZooms.forEach((btn, index) => {
+    btn.addEventListener("click", () => openLightbox(index));
+  });
+
+  if (lightbox) {
+    lightbox.querySelectorAll("[data-lightbox-close]").forEach((el) => {
+      el.addEventListener("click", closeLightbox);
+    });
+    lightbox
+      .querySelector(".lp-lightbox-prev")
+      ?.addEventListener("click", () => {
+        showLightboxImage(lightboxIndex - 1);
+      });
+    lightbox
+      .querySelector(".lp-lightbox-next")
+      ?.addEventListener("click", () => {
+        showLightboxImage(lightboxIndex + 1);
+      });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (lightbox && !lightbox.hidden) {
+      if (e.key === "Escape") {
+        closeLightbox();
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        showLightboxImage(lightboxIndex - 1);
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        showLightboxImage(lightboxIndex + 1);
+      }
+      return;
+    }
+    if (e.key === "Escape" && modal && !modal.hidden) closeModal();
+  });
 
   document.querySelectorAll(".js-register-form").forEach((form) => {
     form.addEventListener("submit", (e) => {
