@@ -3884,21 +3884,40 @@ body.has-sticky .lp-float-contact {
 }
 
 .back-to-top {
+  position: fixed;
+  z-index: 1045;
+  left: auto;
+  right: max(0.85rem, env(safe-area-inset-right));
+  bottom: calc(1.1rem + env(safe-area-inset-bottom));
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: none;
   background: var(--brand) !important;
+  color: #fff !important;
   display: none;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  right: max(0.85rem, env(safe-area-inset-right)) !important;
-  bottom: calc(1.1rem + env(safe-area-inset-bottom)) !important;
+  text-decoration: none !important;
+  box-shadow: 0 12px 28px rgba(11, 19, 36, 0.22);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
 }
 
 body.has-sticky .back-to-top {
-  bottom: calc(5.25rem + env(safe-area-inset-bottom)) !important;
+  bottom: calc(5.25rem + env(safe-area-inset-bottom));
 }
 
 .back-to-top.is-visible {
   display: inline-flex;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  color: #fff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(11, 19, 36, 0.28);
 }
 
 .lp-icon {
