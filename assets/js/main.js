@@ -218,4 +218,14 @@
       });
     });
   });
+
+  /* Back to top */
+  const backToTop = document.getElementById("back-to-top");
+  if (backToTop) {
+    const syncBackToTop = () => {
+      backToTop.classList.toggle("is-visible", window.scrollY > 500);
+    };
+    syncBackToTop();
+    window.addEventListener("scroll", syncBackToTop, { passive: true });
+  }
 })();

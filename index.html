@@ -12,41 +12,65 @@
     <link
       rel="preload"
       as="image"
-      href="assets/images/hero/products.webp"
+      href="assets/images/hero/products-640.webp"
       type="image/webp"
+      imagesrcset="
+        assets/images/hero/products-480.webp 480w,
+        assets/images/hero/products-640.webp 640w,
+        assets/images/hero/products-800.webp 800w,
+        assets/images/hero/products-1200.webp 1200w,
+        assets/images/hero/products.webp 1400w
+      "
+      imagesizes="(max-width: 991.98px) 92vw, 696px"
       fetchpriority="high"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="https://fonts.gstatic.com/s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HSQI286Rb0JcBaoUUU.woff2"
+      crossorigin
     />
     <link
-      href="assets/css/bootstrap.min.css"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="https://fonts.gstatic.com/s/sora/v17/xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwWa-xo6eeI7fM.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="assets/css/fonts.css"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link href="assets/css/fonts.css" rel="stylesheet" />
+    </noscript>
+    <link
+      href="assets/css/lp-base.min.css"
       rel="stylesheet"
       type="text/css"
     />
     <link
-      href="assets/css/materialdesignicons.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://unicons.iconscout.com/release/v3.0.6/css/line.css"
-      rel="stylesheet"
-    />
-    <link
-      href="assets/css/style.min.css"
+      href="assets/css/custom.min.css"
       rel="stylesheet"
       type="text/css"
       id="theme-opt"
     />
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
     <link
+      rel="preload"
       href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
 
   <body>
@@ -93,6 +117,7 @@
       </div>
     </header>
 
+    <main id="main-content">
     <!-- Hero: copy left + visual right -->
     <section class="lp-hero" id="home">
       <div class="container">
@@ -136,10 +161,18 @@
           </div>
           <div class="col-lg-6 lp-hero-visual">
             <img
-              src="assets/images/hero/products.webp"
+              src="assets/images/hero/products-640.webp"
+              srcset="
+                assets/images/hero/products-480.webp 480w,
+                assets/images/hero/products-640.webp 640w,
+                assets/images/hero/products-800.webp 800w,
+                assets/images/hero/products-1200.webp 1200w,
+                assets/images/hero/products.webp 1400w
+              "
+              sizes="(max-width: 991.98px) 92vw, 696px"
               alt="Hệ thống Affiliate Tự Động"
-              width="1400"
-              height="788"
+              width="640"
+              height="360"
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -150,12 +183,12 @@
     </section>
 
     <div class="cta-band">
-      <h3>
+      <h2>
         Tham gia thử thách ngay bây giờ — nhận quà tặng
         <span class="flash">125.970.000 VNĐ</span>
         hoàn toàn
         <span class="flash">MIỄN PHÍ</span>
-      </h3>
+      </h2>
       <p>
         (Chúng tôi chỉ đủ chỗ duy nhất cho
         <strong style="color: #fff">7 người</strong>)
@@ -178,7 +211,7 @@
               <p class="lp-promise-eyebrow text-primary fw-semibold mb-2">
                 Bí mật giúp tạo dòng tiền không ngừng tăng theo thời gian
               </p>
-              <h4 class="title fw-semibold mb-3">
+              <h3 class="title fw-semibold mb-3">
                 “Trong 2 ngày, tôi sẽ chỉ cho bạn cách kiếm hàng
                 <span class="text-primary">30 triệu/tháng</span>
                 chỉ bằng…”
@@ -224,14 +257,14 @@
               >
                 Dành cho bạn, nếu…
               </p>
-              <h4 class="title fw-semibold mb-4">
+              <h3 class="title fw-semibold mb-4">
                 Thử thách 2 ngày Affiliate — hack dòng tiền
                 <span class="text-primary">30 triệu</span>
               </h4>
               <ul class="list-unstyled text-muted lp-check-list mb-0">
                 <li class="mb-3">
                   <span class="text-primary h5 me-2">
-                    <i class="uil uil-check-circle align-middle"></i>
+                    <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .01 20A10 10 0 0 0 12 2zm-1.1 14.2-3.6-3.6 1.4-1.4 2.2 2.2 4.6-4.6 1.4 1.4-6 6z"/></svg>
                   </span>
                   <span class="lp-check-text">
                     Bạn nhìn AI càn quét, thấy rõ công việc làm thuê
@@ -240,7 +273,7 @@
                 </li>
                 <li class="mb-3">
                   <span class="text-primary h5 me-2">
-                    <i class="uil uil-check-circle align-middle"></i>
+                    <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .01 20A10 10 0 0 0 12 2zm-1.1 14.2-3.6-3.6 1.4-1.4 2.2 2.2 4.6-4.6 1.4 1.4-6 6z"/></svg>
                   </span>
                   <span class="lp-check-text">
                     Bạn đã thử bán hàng online, đổ tiền quảng cáo… nhưng
@@ -249,7 +282,7 @@
                 </li>
                 <li class="mb-3">
                   <span class="text-primary h5 me-2">
-                    <i class="uil uil-check-circle align-middle"></i>
+                    <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .01 20A10 10 0 0 0 12 2zm-1.1 14.2-3.6-3.6 1.4-1.4 2.2 2.2 4.6-4.6 1.4 1.4-6 6z"/></svg>
                   </span>
                   <span class="lp-check-text">
                     Bạn mệt mỏi với mô hình công việc cũ:
@@ -261,7 +294,7 @@
                 </li>
                 <li class="mb-0">
                   <span class="text-primary h5 me-2">
-                    <i class="uil uil-check-circle align-middle"></i>
+                    <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .01 20A10 10 0 0 0 12 2zm-1.1 14.2-3.6-3.6 1.4-1.4 2.2 2.2 4.6-4.6 1.4 1.4-6 6z"/></svg>
                   </span>
                   <span class="lp-check-text">
                     Bạn muốn một lối đi khác — thực tế, dễ làm — nơi chỉ cần
@@ -291,7 +324,7 @@
               <p class="mb-2">
                 Nếu bạn thấy mình trong bất kỳ dòng nào ở trên…
               </p>
-              <h4 class="title fw-semibold mb-3">
+              <h3 class="title fw-semibold mb-3">
                 Thì
                 <span class="text-primary">THỬ THÁCH 2 NGÀY</span>
                 này sinh ra chính xác cho bạn!
@@ -464,7 +497,7 @@
             <ul class="lp-why-list list-unstyled mb-0">
               <li class="lp-why-item reveal">
                 <span class="lp-why-icon" aria-hidden="true">
-                  <i class="uil uil-check"></i>
+                  <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.5 16.2 5.3 12l1.4-1.4 2.8 2.8 7-7 1.4 1.4-8.4 8.4z"/></svg>
                 </span>
                 <span class="lp-why-text">
                   <strong>2 ngày = 1 hệ thống chạy thật.</strong>
@@ -474,7 +507,7 @@
               </li>
               <li class="lp-why-item reveal reveal-delay-1">
                 <span class="lp-why-icon" aria-hidden="true">
-                  <i class="uil uil-check"></i>
+                  <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.5 16.2 5.3 12l1.4-1.4 2.8 2.8 7-7 1.4 1.4-8.4 8.4z"/></svg>
                 </span>
                 <span class="lp-why-text">
                   <strong>Quên công nghệ đi.</strong>
@@ -484,7 +517,7 @@
               </li>
               <li class="lp-why-item reveal reveal-delay-2">
                 <span class="lp-why-icon" aria-hidden="true">
-                  <i class="uil uil-check"></i>
+                  <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.5 16.2 5.3 12l1.4-1.4 2.8 2.8 7-7 1.4 1.4-8.4 8.4z"/></svg>
                 </span>
                 <span class="lp-why-text">
                   <strong>Thực chiến 100%.</strong>
@@ -494,7 +527,7 @@
               </li>
               <li class="lp-why-item reveal">
                 <span class="lp-why-icon" aria-hidden="true">
-                  <i class="uil uil-check"></i>
+                  <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.5 16.2 5.3 12l1.4-1.4 2.8 2.8 7-7 1.4 1.4-8.4 8.4z"/></svg>
                 </span>
                 <span class="lp-why-text">
                   <strong>Đúng trend 2026.</strong>
@@ -504,7 +537,7 @@
               </li>
               <li class="lp-why-item reveal reveal-delay-1">
                 <span class="lp-why-icon lp-why-icon-gift" aria-hidden="true">
-                  <i class="uil uil-gift"></i>
+                  <svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 7h-2.2A3 3 0 0 0 12 3.1 3 3 0 0 0 6.2 7H4a1 1 0 0 0-1 1v3h18V8a1 1 0 0 0-1-1zM9 5a1 1 0 1 1 0 2H8a1 1 0 0 1 1-2zm7 2h-1a1 1 0 1 1 0-2 1 1 0 0 1 1 2zM3 13v7a1 1 0 0 0 1 1h7v-8H3zm10 8h7a1 1 0 0 0 1-1v-7h-8v8z"/></svg>
                 </span>
                 <span class="lp-why-text">
                   <strong>Quà trị giá 125.970.000đ</strong>
@@ -1532,16 +1565,14 @@
       </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer bg-footer">
       <div class="footer-py-30 footer-bar bg-footer">
         <div class="container text-center">
           <p class="mb-0 text-muted">
-            Huynhtienphat.com —
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            — Bảo mật — Xác minh
+            Huynhtienphat.com — 2026 — Bảo mật — Xác minh
           </p>
         </div>
       </div>
@@ -1623,18 +1654,14 @@
     </div>
 
     <a
-      href="javascript:void(0)"
-      onclick="topFunction()"
+      href="#home"
       id="back-to-top"
       class="back-to-top rounded-pill"
-      ><i class="mdi mdi-arrow-up"></i
-    ></a>
+      aria-label="Lên đầu trang"
+      ><svg class="lp-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5.5 18.5 12H15v6.5H9V12H5.5L12 5.5z"/></svg></a
+    >
 
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/feather.min.js"></script>
-    <script src="assets/js/plugins.init.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script defer src="assets/js/main.js"></script>
   </body>
 </html>
