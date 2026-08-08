@@ -3623,12 +3623,278 @@ body.has-sticky {
   }
 }
 
+/* Floating contact — right side */
+.lp-float-contact {
+  position: fixed;
+  right: max(0.85rem, env(safe-area-inset-right));
+  bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-end;
+}
+
+body.has-sticky .lp-float-contact {
+  bottom: calc(6.75rem + env(safe-area-inset-bottom));
+}
+
+.lp-float-btn {
+  position: relative;
+  width: 3.35rem;
+  height: 3.35rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: 0 12px 28px rgba(11, 19, 36, 0.22);
+  overflow: visible;
+  opacity: 0;
+  translate: 1.35rem 0;
+  scale: 0.88;
+  animation: lp-float-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+}
+
+.lp-float-zalo {
+  animation-delay: 0.3s;
+}
+
+.lp-float-messenger {
+  animation-delay: 0.45s;
+}
+
+.lp-float-phone {
+  animation-delay: 0.6s;
+}
+
+.lp-float-btn svg {
+  width: 1.45rem;
+  height: 1.45rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+  animation: lp-float-bob 2.8s ease-in-out 1.1s infinite;
+}
+
+.lp-float-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 999px;
+  position: relative;
+  z-index: 1;
+  animation: lp-float-bob 2.8s ease-in-out 1.1s infinite;
+}
+
+.lp-float-messenger img {
+  animation-delay: 1.45s;
+}
+
+.lp-float-phone svg {
+  animation-delay: 1.8s;
+}
+
+.lp-float-btn:hover,
+.lp-float-btn:focus-visible {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 18px 36px rgba(11, 19, 36, 0.3);
+  filter: brightness(1.05);
+}
+
+.lp-float-btn:hover img,
+.lp-float-btn:hover svg,
+.lp-float-btn:focus-visible img,
+.lp-float-btn:focus-visible svg {
+  animation-play-state: paused;
+}
+
+.lp-float-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.lp-float-label {
+  position: absolute;
+  right: calc(100% + 0.55rem);
+  top: 50%;
+  white-space: nowrap;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  transform: translate(6px, -50%);
+}
+
+.lp-float-btn:hover .lp-float-label,
+.lp-float-btn:focus-visible .lp-float-label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.lp-float-zalo,
+.lp-float-messenger {
+  background: #fff;
+  padding: 0;
+}
+
+.lp-float-phone {
+  background: linear-gradient(145deg, #22c55e, #16a34a);
+}
+
+.lp-float-zalo::before,
+.lp-float-messenger::before,
+.lp-float-phone::before,
+.lp-float-zalo::after,
+.lp-float-messenger::after,
+.lp-float-phone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.lp-float-zalo::before,
+.lp-float-zalo::after {
+  color: rgba(0, 104, 255, 0.45);
+}
+
+.lp-float-messenger::before,
+.lp-float-messenger::after {
+  color: rgba(160, 51, 255, 0.4);
+}
+
+.lp-float-phone::before,
+.lp-float-phone::after {
+  color: rgba(22, 163, 74, 0.45);
+}
+
+.lp-float-zalo::before,
+.lp-float-messenger::before,
+.lp-float-phone::before {
+  animation: lp-float-pulse 2.6s ease-out infinite;
+}
+
+.lp-float-zalo::after,
+.lp-float-messenger::after,
+.lp-float-phone::after {
+  animation: lp-float-pulse 2.6s ease-out infinite;
+}
+
+.lp-float-zalo::before {
+  animation-delay: 0.2s;
+}
+
+.lp-float-zalo::after {
+  animation-delay: 1.5s;
+}
+
+.lp-float-messenger::before {
+  animation-delay: 0.55s;
+}
+
+.lp-float-messenger::after {
+  animation-delay: 1.85s;
+}
+
+.lp-float-phone::before {
+  animation-delay: 0.9s;
+}
+
+.lp-float-phone::after {
+  animation-delay: 2.2s;
+}
+
+@keyframes lp-float-in {
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes lp-float-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes lp-float-pulse {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0.85;
+  }
+  70% {
+    box-shadow: 0 0 0 16px transparent;
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .lp-float-btn {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+
+  .lp-float-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-float-btn,
+  .lp-float-btn img,
+  .lp-float-btn svg,
+  .lp-float-zalo::before,
+  .lp-float-zalo::after,
+  .lp-float-messenger::before,
+  .lp-float-messenger::after,
+  .lp-float-phone::before,
+  .lp-float-phone::after {
+    animation: none !important;
+  }
+
+  .lp-float-btn {
+    opacity: 1;
+    translate: none;
+    scale: none;
+  }
+}
+
 .back-to-top {
   background: var(--brand) !important;
   display: none;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  right: max(0.85rem, env(safe-area-inset-right)) !important;
+  bottom: calc(1.1rem + env(safe-area-inset-bottom)) !important;
+}
+
+body.has-sticky .back-to-top {
+  bottom: calc(5.25rem + env(safe-area-inset-bottom)) !important;
 }
 
 .back-to-top.is-visible {
