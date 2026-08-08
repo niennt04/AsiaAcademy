@@ -27,6 +27,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  max-width: 100%;
+  scroll-padding-top: var(--lp-header-h, 6.75rem);
 }
 
 body {
@@ -45,7 +48,9 @@ body {
     ),
     var(--paper);
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+  padding-top: var(--lp-header-h, 6.75rem);
 }
 
 h1,
@@ -128,12 +133,13 @@ a.text-primary,
   --bs-primary: #0866ff;
 }
 
-/* ---- Header (override Starty #topnav fixed) ---- */
+/* ---- Header (fixed sticky override Starty #topnav) ---- */
 #topnav.lp-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  right: auto;
-  left: auto;
+  right: 0;
+  left: 0;
+  width: 100%;
   z-index: 1040;
   background: transparent !important;
   border: 0;

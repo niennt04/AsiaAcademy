@@ -5,16 +5,28 @@
   const header = document.querySelector(".lp-header");
   const toggle = document.getElementById("isToggle");
 
+  const syncHeaderOffset = () => {
+    if (!header) return;
+    document.documentElement.style.setProperty(
+      "--lp-header-h",
+      `${header.offsetHeight}px`,
+    );
+  };
+  syncHeaderOffset();
+  window.addEventListener("resize", syncHeaderOffset, { passive: true });
+
   const closeHeaderMenu = () => {
     if (!header) return;
     header.classList.remove("is-open");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
+    syncHeaderOffset();
   };
 
   if (toggle && header) {
     toggle.addEventListener("click", () => {
       const open = header.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      /* Menu dropdown overlays content; keep offset as closed bar height */
     });
   }
 
@@ -37,9 +49,8 @@
   };
 
   document.querySelectorAll(".reveal").forEach((el) => {
+    /* Avoid fade-left/right — they translateX and cause mobile horizontal overflow */
     let anim = "fade-up";
-    if (el.classList.contains("reveal-left")) anim = "fade-right";
-    if (el.classList.contains("reveal-right")) anim = "fade-left";
     if (el.classList.contains("reveal-scale")) anim = "zoom-in";
 
     let delay = 0;
@@ -80,14 +91,11 @@
   });
 
   document
-    .querySelectorAll(".lp-coach-media, .lp-form-media, .lp-model-media")
+    .querySelectorAll(
+      ".lp-coach-media, .lp-form-media, .lp-model-media, .lp-coach-copy, .lp-form-panel, .lp-model-copy",
+    )
     .forEach((el) =>
-      setAos(el, "fade-right", { duration: 800, easing: "ease-out-cubic" }),
-    );
-  document
-    .querySelectorAll(".lp-coach-copy, .lp-form-panel, .lp-model-copy")
-    .forEach((el) =>
-      setAos(el, "fade-left", { duration: 800, easing: "ease-out-cubic" }),
+      setAos(el, "fade-up", { duration: 800, easing: "ease-out-cubic" }),
     );
   document
     .querySelectorAll(".lp-gifts-value, .lp-offer-box, .lp-form-card")
@@ -123,7 +131,7 @@
     duration: 650,
     delay: 280,
   });
-  setAos(document.querySelector(".lp-hero-visual"), "fade-left", {
+  setAos(document.querySelector(".lp-hero-visual"), "fade-up", {
     duration: 900,
     delay: 160,
   });
