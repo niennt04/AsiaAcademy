@@ -41,11 +41,16 @@
 
   /* Map existing .reveal blocks → AOS attributes */
   const setAos = (el, animation, extras = {}) => {
-    if (!el) return;
+    if (!el || el.hasAttribute("data-aos")) return;
     el.setAttribute("data-aos", animation);
     Object.entries(extras).forEach(([k, v]) => {
       el.setAttribute(`data-aos-${k}`, String(v));
     });
+  };
+
+  const aosBase = {
+    duration: 820,
+    easing: "ease-out-cubic",
   };
 
   document.querySelectorAll(".reveal").forEach((el) => {
@@ -54,15 +59,14 @@
     if (el.classList.contains("reveal-scale")) anim = "zoom-in";
 
     let delay = 0;
-    if (el.classList.contains("reveal-delay-1")) delay = 80;
-    if (el.classList.contains("reveal-delay-2")) delay = 160;
-    if (el.classList.contains("reveal-delay-3")) delay = 240;
-    if (el.classList.contains("reveal-delay-4")) delay = 320;
-    if (el.classList.contains("reveal-delay-5")) delay = 400;
+    if (el.classList.contains("reveal-delay-1")) delay = 100;
+    if (el.classList.contains("reveal-delay-2")) delay = 180;
+    if (el.classList.contains("reveal-delay-3")) delay = 260;
+    if (el.classList.contains("reveal-delay-4")) delay = 340;
+    if (el.classList.contains("reveal-delay-5")) delay = 420;
 
     setAos(el, anim, {
-      duration: 750,
-      easing: "ease-out-cubic",
+      ...aosBase,
       ...(delay ? { delay } : {}),
     });
   });
@@ -77,14 +81,17 @@
     ".lp-why-list",
     ".promise-stats",
     ".lp-offer-list",
+    ".lp-check-list",
+    ".lp-urgency-list",
+    ".lp-agenda",
   ];
   staggerParents.forEach((sel) => {
     document.querySelectorAll(sel).forEach((parent) => {
       [...parent.children].forEach((child, i) => {
         setAos(child, "fade-up", {
-          duration: 700,
-          easing: "ease-out-cubic",
-          delay: i * 90,
+          ...aosBase,
+          duration: 760,
+          delay: Math.min(i * 100, 500),
         });
       });
     });
@@ -92,57 +99,139 @@
 
   document
     .querySelectorAll(
-      ".lp-coach-media, .lp-form-media, .lp-model-media, .lp-coach-copy, .lp-form-panel, .lp-model-copy",
+      ".lp-coach-media, .lp-form-media, .lp-model-media, .lp-coach-copy, .lp-form-panel, .lp-model-copy, .lp-letter, .lp-truth-copy, .lp-truth-outcome, .lp-side-img, .lp-compare-media, .lp-urgency-aside, .lp-urgency-main",
     )
-    .forEach((el) =>
-      setAos(el, "fade-up", { duration: 800, easing: "ease-out-cubic" }),
-    );
-  document
-    .querySelectorAll(".lp-gifts-value, .lp-offer-box, .lp-form-card")
-    .forEach((el) =>
-      setAos(el, "zoom-in", { duration: 700, easing: "ease-out-cubic" }),
-    );
+    .forEach((el) => setAos(el, "fade-up", { ...aosBase, duration: 900 }));
 
   document
     .querySelectorAll(
-      ".lp-curriculum-head, .lp-gifts-head, .lp-compare-head, .lp-offer-head, .lp-model-head, .lp-urgency-title, .cta-band",
+      ".lp-gifts-value, .lp-offer-box, .lp-form-card, .lp-gifts-cta, .lp-gift, .lp-gift-bonus",
     )
-    .forEach((el) =>
-      setAos(el, "fade-up", { duration: 750, easing: "ease-out-cubic" }),
-    );
+    .forEach((el) => setAos(el, "zoom-in", { ...aosBase, duration: 780 }));
 
-  setAos(document.querySelector(".lp-hero .lp-brand"), "fade-up", {
-    duration: 650,
-  });
+  document
+    .querySelectorAll(
+      ".lp-curriculum-head, .lp-gifts-head, .lp-compare-head, .lp-offer-head, .lp-model-head, .lp-urgency-title, .cta-band, .section-title, .lp-form-head, .footer .container",
+    )
+    .forEach((el) => setAos(el, "fade-up", aosBase));
+
+  /* Hero entrance — staggered rise */
   setAos(document.querySelector(".lp-hero-hook"), "fade-up", {
-    duration: 650,
-    delay: 60,
+    ...aosBase,
+    duration: 700,
+    delay: 40,
   });
   setAos(document.querySelector(".lp-hero h1"), "fade-up", {
-    duration: 750,
+    ...aosBase,
+    duration: 850,
     delay: 120,
   });
   document
     .querySelectorAll(".lp-hero-lead")
     .forEach((el, i) =>
-      setAos(el, "fade-up", { duration: 650, delay: 180 + i * 60 }),
+      setAos(el, "fade-up", { ...aosBase, duration: 720, delay: 200 + i * 70 }),
     );
   setAos(document.querySelector(".lp-hero-actions"), "fade-up", {
-    duration: 650,
-    delay: 280,
+    ...aosBase,
+    duration: 720,
+    delay: 320,
   });
-  setAos(document.querySelector(".lp-hero-visual"), "fade-up", {
-    duration: 900,
-    delay: 160,
+  setAos(document.querySelector(".lp-hero-visual"), "zoom-in", {
+    ...aosBase,
+    duration: 1000,
+    delay: 180,
+  });
+
+  /* Catch remaining section blocks without AOS */
+  document.querySelectorAll("main .section .container > *").forEach((el) => {
+    if (el.hasAttribute("data-aos")) return;
+    if (el.querySelector("[data-aos]")) return;
+    setAos(el, "fade-up", aosBase);
   });
 
   if (typeof AOS !== "undefined" && !reduced) {
     AOS.init({
       once: true,
-      offset: 80,
-      duration: 700,
+      offset: 72,
+      duration: 820,
       easing: "ease-out-cubic",
+      anchorPlacement: "top-bottom",
+      disableMutationObserver: false,
     });
+  }
+
+  /* Subtle hero parallax (desktop only) */
+  const heroVisual = document.querySelector(".lp-hero-visual img");
+  if (
+    heroVisual &&
+    !reduced &&
+    window.matchMedia("(min-width: 992px)").matches
+  ) {
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = Math.min(window.scrollY * 0.08, 36);
+          heroVisual.style.translate = `0 ${y}px`;
+          ticking = false;
+        });
+      },
+      { passive: true },
+    );
+  }
+
+  /* Number rise for promise stats when in view */
+  const stats = document.querySelectorAll(".promise-stats .item strong");
+  if (stats.length && !reduced && "IntersectionObserver" in window) {
+    const animateValue = (el) => {
+      const raw = el.textContent.trim();
+      const numMatch = raw.match(/[\d.]+/);
+      if (!numMatch) {
+        el.classList.add("is-counted");
+        return;
+      }
+      const targetStr = numMatch[0];
+      const target = parseFloat(targetStr.replace(/\./g, ""));
+      if (!Number.isFinite(target) || target <= 0 || target > 1e9) {
+        el.classList.add("is-counted");
+        return;
+      }
+      /* Only animate small headline numbers (2 ngày, 9 suất), not money */
+      if (target > 100) {
+        el.classList.add("is-counted");
+        return;
+      }
+      const suffix = raw.slice(raw.indexOf(targetStr) + targetStr.length);
+      const prefix = raw.slice(0, raw.indexOf(targetStr));
+      const duration = 900;
+      const start = performance.now();
+      const frame = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = `${prefix}${Math.round(target * eased)}${suffix}`;
+        if (t < 1) requestAnimationFrame(frame);
+        else {
+          el.textContent = raw;
+          el.classList.add("is-counted");
+        }
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateValue(entry.target);
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.55 },
+    );
+    stats.forEach((el) => io.observe(el));
   }
 
   const sticky = document.querySelector(".sticky-cta");

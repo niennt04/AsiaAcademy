@@ -3726,6 +3726,199 @@ html {
   animation: modalIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ===== Site-wide motion polish ===== */
+:root {
+  --lp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --lp-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn,
+.lp-gift-btn,
+.lp-gifts-cta-btn,
+.lp-urgency-btn,
+.lp-offer-btn,
+.lp-nav a,
+.lp-header-cta,
+.lp-proof-zoom,
+.lp-float-btn,
+.back-to-top {
+  transition:
+    transform 0.28s var(--lp-ease),
+    box-shadow 0.28s var(--lp-ease),
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease,
+    filter 0.28s ease,
+    opacity 0.28s ease;
+}
+
+.btn:hover,
+.lp-gift-btn:hover,
+.lp-gifts-cta-btn:hover,
+.lp-urgency-btn:hover,
+.lp-offer-btn:hover,
+.lp-header-cta:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active,
+.lp-gift-btn:active,
+.lp-gifts-cta-btn:active,
+.lp-urgency-btn:active,
+.lp-offer-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.lp-gift,
+.lp-gift-bonus,
+.lp-why-item,
+.lp-compare-col,
+.lp-module,
+.lp-offer-box,
+.lp-form-card,
+.lp-letter,
+.lp-truth-box,
+.lp-truth-outcome {
+  transition:
+    transform 0.35s var(--lp-ease),
+    box-shadow 0.35s var(--lp-ease),
+    border-color 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lp-gift:hover,
+  .lp-gift-bonus:hover,
+  .lp-why-item:hover,
+  .lp-compare-col:hover,
+  .lp-module:hover {
+    transform: translateY(-4px);
+  }
+
+  .lp-proof-item {
+    transition: transform 0.35s var(--lp-ease);
+  }
+
+  .lp-proof-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .lp-proof-zoom img,
+  .lp-gift-visual img,
+  .lp-side-img,
+  .lp-model-media img,
+  .lp-coach-media img,
+  .lp-compare-media img,
+  .lp-form-media img {
+    transition: transform 0.55s var(--lp-ease-out);
+  }
+
+  .lp-proof-zoom:hover img,
+  .lp-gift:hover .lp-gift-visual img,
+  .lp-model-media:hover img,
+  .lp-coach-media:hover img,
+  .lp-compare-col:hover .lp-compare-media img {
+    transform: scale(1.035);
+  }
+}
+
+.lp-hero-visual img {
+  transition: translate 0.2s linear;
+  will-change: translate;
+}
+
+.lp-lightbox:not([hidden]) .lp-lightbox-backdrop {
+  animation: backdropIn 0.3s ease both;
+}
+
+.lp-lightbox:not([hidden]) .lp-lightbox-figure {
+  animation: lp-lightbox-in 0.42s var(--lp-ease) both;
+}
+
+@keyframes lp-lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.sticky-cta {
+  transition: transform 0.4s var(--lp-ease);
+}
+
+.back-to-top.is-visible {
+  animation: lp-pop-in 0.35s var(--lp-ease) both;
+}
+
+@keyframes lp-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.promise-stats .item strong {
+  transition:
+    transform 0.35s var(--lp-ease),
+    opacity 0.35s ease;
+}
+
+.promise-stats .item strong.is-counted {
+  animation: lp-stat-settle 0.45s var(--lp-ease) both;
+}
+
+@keyframes lp-stat-settle {
+  from {
+    transform: translateY(6px);
+    opacity: 0.55;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* AOS polish — slightly softer distance */
+[data-aos] {
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-visual img,
+  .lp-proof-zoom img,
+  .lp-gift-visual img,
+  .lp-side-img,
+  .lp-model-media img,
+  .lp-coach-media img,
+  .lp-compare-media img,
+  .lp-form-media img,
+  .btn,
+  .lp-gift,
+  .lp-gift-bonus,
+  .lp-why-item,
+  .lp-compare-col,
+  .lp-module,
+  .lp-proof-item {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .lp-lightbox:not([hidden]) .lp-lightbox-backdrop,
+  .lp-lightbox:not([hidden]) .lp-lightbox-figure,
+  .back-to-top.is-visible,
+  .promise-stats .item strong.is-counted {
+    animation: none !important;
+  }
+}
+
 @keyframes announceShine {
   0% {
     transform: translateX(0);
