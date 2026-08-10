@@ -249,14 +249,31 @@
   }
 
   const modal = document.getElementById("modal-register");
+  const modalFormView = modal?.querySelector('[data-modal-view="form"]');
+  const modalSuccessView = modal?.querySelector('[data-modal-view="success"]');
+  const modalForm = modal?.querySelector(".js-register-form");
+
+  const showModalForm = () => {
+    if (modalFormView) modalFormView.hidden = false;
+    if (modalSuccessView) modalSuccessView.hidden = true;
+  };
+
+  const showModalSuccess = () => {
+    if (modalFormView) modalFormView.hidden = true;
+    if (modalSuccessView) modalSuccessView.hidden = false;
+  };
+
   const openModal = () => {
     if (!modal) return;
     closeLightbox();
     closeHeaderMenu();
+    showModalForm();
     modal.hidden = false;
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("lp-modal-open");
-    const first = modal.querySelector("input, button");
+    const first = modal.querySelector(
+      '[data-modal-view="form"]:not([hidden]) input, [data-modal-view="form"]:not([hidden]) button',
+    );
     if (first) first.focus({ preventScroll: true });
   };
   const closeModal = () => {
@@ -264,6 +281,8 @@
     modal.hidden = true;
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lp-modal-open");
+    showModalForm();
+    if (modalForm) modalForm.reset();
   };
 
   document.querySelectorAll(".js-open-register").forEach((el) => {
@@ -363,11 +382,15 @@
   document.querySelectorAll(".js-register-form").forEach((form) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert(
-        "Cảm ơn bạn! Vé miễn phí sẽ được gửi — hãy nối form với Zalo/CRM thật.",
-      );
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
       form.reset();
-      closeModal();
+      showModalSuccess();
+      modalSuccessView
+        ?.querySelector("button, [data-close-modal]")
+        ?.focus({ preventScroll: true });
     });
   });
 

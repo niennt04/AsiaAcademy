@@ -957,11 +957,13 @@ a.text-primary,
 
 .lp-letter-name {
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin: 0.35rem 0 0.15rem;
+  margin: 0.35rem 0 1rem;
   color: #fff;
+  line-height: 1.3;
+  text-transform: uppercase;
 }
 
 .lp-letter-role {
@@ -971,16 +973,21 @@ a.text-primary,
   font-weight: 600;
 }
 
-.lp-letter-quote {
-  margin: auto 0 0;
+.lp-letter-quote,
+.lp-letter-story {
+  margin: 0;
   padding: 0;
   border: 0;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.82);
   border-left: 3px solid #0866ff;
   padding-left: 0.9rem;
+}
+
+.lp-letter-quote {
+  margin: auto 0 0;
+  font-style: italic;
 }
 
 .lp-letter-body {
@@ -1037,7 +1044,8 @@ a.text-primary,
     padding: 1.75rem 1.5rem 1.5rem;
   }
 
-  .lp-letter-quote {
+  .lp-letter-quote,
+  .lp-letter-story {
     margin-top: 1rem;
   }
 
@@ -1067,7 +1075,7 @@ a.text-primary,
   }
 
   .lp-letter-avatar {
-    grid-row: 1 / 4;
+    grid-row: 1 / 3;
     width: 64px;
     height: 64px;
     margin-bottom: 0;
@@ -1085,7 +1093,8 @@ a.text-primary,
 
   .lp-letter-name {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
+    line-height: 1.25;
   }
 
   .lp-letter-role {
@@ -1093,11 +1102,12 @@ a.text-primary,
     font-size: 0.82rem;
   }
 
-  .lp-letter-quote {
+  .lp-letter-quote,
+  .lp-letter-story {
     grid-column: 1 / -1;
     margin-top: 0.85rem;
     font-size: 0.88rem;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .lp-letter-body {
@@ -3419,6 +3429,31 @@ a.text-primary,
 
 .lp-modal-seats strong {
   color: var(--ink);
+}
+
+.lp-modal-success {
+  text-align: center;
+  padding: 1.25rem 0.25rem 0.35rem;
+}
+
+.lp-modal-success-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.65rem;
+  color: var(--ink);
+}
+
+.lp-modal-success-text {
+  margin: 0 0 1.35rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.lp-modal-success .lp-form-btn {
+  width: 100%;
 }
 
 body.lp-modal-open {
